@@ -114,7 +114,7 @@ int main()
         //main_array();
         //main_array_decay();
         //main_attributes();
-        main_auto();
+        //main_auto();
         //main_back_inserter();
         //main_bind();
         //main_casts();
@@ -132,7 +132,7 @@ int main()
         //main_exercises();
         //main_expression_templates();
         //main_generate();
-        //main_generic_lambdas();
+       // main_generic_lambdas();
         //main_keyword_explicit();
         //main_filesystem();
         //main_functional_programming();
@@ -195,7 +195,7 @@ int main()
         //main_variant();
         //main_virtual_destructor();
         //main_virtual_override_final();
-        //main_weak_pointer();
+        main_weak_pointer();
     }
     catch (const std::exception& ex) {
         std::cout << "Exception: " << ex.what() << std::endl;

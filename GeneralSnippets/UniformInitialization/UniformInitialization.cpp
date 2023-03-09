@@ -8,6 +8,23 @@
 #include <array>
 #include <algorithm>
 
+class X
+{
+public:
+    void print() {}
+};
+
+void test()
+{
+   // std::vector<int> vec( 1, 2, 3 );
+
+    X x{};  // 
+    // X x = new X();  // C# / Java
+
+    x.print();
+}
+
+
 namespace UniformInitialization {
 
     // =================================================================================
@@ -15,7 +32,9 @@ namespace UniformInitialization {
 
     void test_01()
     {
-        int n{};              // n equals 0
+        int m = 1;
+
+        int n{ 1 };              // n equals 0
         float f{};            // f equals 0.0
         double d{};           // d equals 0.0
         unsigned long l{};    // l equals 0
@@ -33,6 +52,8 @@ namespace UniformInitialization {
 
     void test_02()
     {
+        int m = 2;
+
         int n{ 1 };          // n equals 1
         float f{ 1.5f };     // f equals 1.5
         double d{ 2.5 };     // d equals 2.5
@@ -53,10 +74,10 @@ namespace UniformInitialization {
 
     void test_03()
     {
-        [[maybe_unused]] struct Struct obj0;           // uninitialized !!!
-        [[maybe_unused]] struct Struct obj1 {};        // obj1.m_i => 0, obj1.m_j => 0
-        [[maybe_unused]] struct Struct obj2 { 1, 2 };  // obj2.m_i => 1, obj2.m_j => 2
-        [[maybe_unused]] struct Struct obj3 { 3 };     // obj3.m_i => 3, obj3.m_j => 0
+        struct Struct obj0;                       // uninitialized !!!
+        struct Struct obj1 {};               // obj1.m_i => 0, obj1.m_j => 0
+        struct Struct obj2 { 1, 2 };  // obj2.m_i => 1, obj2.m_j => 2
+        struct Struct obj3 { 3 };     // obj3.m_i => 3, obj3.m_j => 0
         // gcc: warning: missing initializer for member 'Struct::m_j'
     }
 
@@ -82,9 +103,20 @@ namespace UniformInitialization {
     private:
         int m_a;
         int m_b;
+        std::string m_s;
 
     public:
-        Class(int a, int b) : m_a{ a }, m_b{ b } {}
+        Class(int a, int b, std::string s)
+            : m_a{ a }, m_b{ b }, m_s{s} {}
+
+        Class(int a, int b)
+            : m_a{ a }, m_b{ b }, m_s{  } {}
+
+        //Class(int a, int b, std::string s) : m_s{} {
+        //    m_a = a;
+        //    m_b = b;
+        //    m_s = s;
+        //}
     };
 
     void test_05()
@@ -198,12 +230,20 @@ namespace UniformInitialization {
         int m_array[2];
     };
 
+    struct Inner2 {
+        int m_array1[2];
+        int m_array2[2];
+    };
+
     void test_09()
     {
-        [[maybe_unused]] Inner inner1;                // uninitialized
-        [[maybe_unused]] Inner inner2{ };             // m_array[0] => 0 & m_array[1] => 0
-        [[maybe_unused]] Inner inner3{ { 1, 2 } };    // Direct initialization
-        [[maybe_unused]] Inner inner4{ 1, 2 };        // Uses Brace Elision (!) of m_array
+        Inner inner1;                // uninitialized
+        Inner inner2{ };             // m_array[0] => 0 & m_array[1] => 0
+        Inner inner3{ { 1, 2 } };    // Direct initialization
+        Inner inner4{ 1, 2 };        // Uses Brace Elision (!) of m_array
+    
+        Inner2 inner23{ { 1, 2 },  { 1, 2 } };    // Direct initialization
+        Inner2 inner24{ 1, 2, 3, 4 };
     }
 
     void test_09_01()

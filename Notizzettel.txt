@@ -72,3 +72,89 @@ https://github.com/pelocpp/cpp_modern_examples/blob/master/GeneralSnippets/Templ
 
 // =====================================================================
 
+
+Lambda-Funktionen
+
+
+// =====================================================================
+
+Cpp Insights:
+
+https://cppinsights.io/
+
+// =====================================================================
+
+class X
+{
+  public:
+     void print () {}
+};
+
+void test () 
+{
+   X x();
+   // X x = new X();  // C# / Java
+
+   x.print();
+}
+
+// =====================================================================
+
+"Zu jedem new gehört ein delete"  :)
+
+Death March
+
+
+Idee:
+
+RAII
+
+== Pointer   / 'raw' Zeiger
+
+== Hüllenklasse / Hüllenobjekt:
+
+   Dieses Objekt kapselt den Zeiger
+
+   Veranwortlich für den delete Aufruf !
+
+== OO: Konstruktoren, Destruktoren
+
+== Destruktoren ===> wird deterministisch aufgerufen.
+
+== Hüllenobjekte:  lokales Objekt
+
+== Konstruktor:  new / Zeiger wird übergeben
+
+== Destruktor:   Kann den Zeiger freigeben (delete) ...
+                 oder seinen Gebrauch "mitzählen"
+
+Fazit: Der Anwender ruft delete  NICHT mehr auf.
+
+
+a) auto_ptr
+
+b) std::unique_ptr
+   std::shared_ptr
+
+   Strategie:  
+
+i) std::unique_ptr:
+
+   Zu EINEM Zeitpunkt kann ein std::unique_ptr
+   nur EINEN Besitzer haben.
+
+
+ii) std::shared_ptr:
+
+    Zu EINEM Zeitpunkt kann ein std::shared_ptr
+    MEHRERE Besitzer haben.
+
+    Kommen in die Nähe von C#/Java: Garbage Collection
+
+    Stichwort: Referenz Zähler
+
+iii) Wehrmutstropfen: Der std::shared_ptr
+     funktioniert nicht immer :-(((
+
+      std::weak_ptr
+

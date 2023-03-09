@@ -167,8 +167,9 @@ namespace Auto_Examples {
     }
 
     void test_01_d() {
+        
+        auto msg = getMessage(); // std::string
 
-        auto msg = getMessage();
         std::cout << "Message: " << msg << std::endl;
 
         // but:

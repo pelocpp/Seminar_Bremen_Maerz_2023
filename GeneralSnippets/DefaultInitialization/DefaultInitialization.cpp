@@ -12,9 +12,12 @@ namespace DefaultInitializationExample {
     private:
         int m_i = 1;
         int m_j{ 2 };
+        //int m_i;
+        //int m_j;
 
     public:
         X() = default;    // initializes m_i with 1 and m_j with 2
+        
         X(int);
     };
 

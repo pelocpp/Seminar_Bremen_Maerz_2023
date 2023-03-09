@@ -18,7 +18,8 @@
 
 namespace WeakPointer {
 
-    void test_01() {
+    void test_01() 
+    {
         std::cout << std::boolalpha;
 
         std::cout << "Begin-of-program" << std::endl;
@@ -38,15 +39,19 @@ namespace WeakPointer {
             // need shared pointer to access weak pointer
             std::cout << "Is weak ptr expired:        " << weakPtr.expired() << std::endl;
 
-            std::shared_ptr<int> ptr2{ weakPtr.lock() };
-            if (ptr2 != nullptr) {
+       //     int m = *weakPtr;
 
-                std::cout << "Usage count shared_ptr:     " << ptr1.use_count() << std::endl;
-                std::cout << "Usage count shared_ptr:     " << ptr2.use_count() << std::endl;
+            std::shared_ptr<int> ptr2{ ptr1 };
 
-                // access weak pointer via shared pointer
-                std::cout << "*sharedPtr:                 " << *ptr2 << std::endl;
-            }
+            //std::shared_ptr<int> ptr2{ weakPtr.lock() };
+            //if (ptr2 != nullptr) {
+
+            //    std::cout << "Usage count shared_ptr:     " << ptr1.use_count() << std::endl;
+            //    std::cout << "Usage count shared_ptr:     " << ptr2.use_count() << std::endl;
+
+            //     access weak pointer via shared pointer
+            //    std::cout << "*sharedPtr:                 " << *ptr2 << std::endl;
+            //}
 
             std::cout << "Is weak ptr expired:        " << weakPtr.expired() << std::endl;
             std::cout << "End-of-Scope" << std::endl;
@@ -78,8 +83,8 @@ namespace WeakPointer {
 
     class ParentNode {
     private:
-        std::shared_ptr<RightNode> m_rightNode;   // <== shared or weak ?
-        std::shared_ptr<LeftNode> m_leftNode;     // <== shared or weak ?
+        std::weak_ptr<RightNode> m_rightNode;   // <== shared or weak ?
+        std::weak_ptr<LeftNode> m_leftNode;     // <== shared or weak ?
 
     public:
         ParentNode() {
@@ -88,6 +93,7 @@ namespace WeakPointer {
         ~ParentNode() {
             std::cout << "d'tor ParentNode" << std::endl;
         }
+
         void setRightNode(const std::shared_ptr<RightNode> right) {
             m_rightNode = right;
         }
@@ -136,6 +142,10 @@ namespace WeakPointer {
         parent->setLeftNode(leftNode);
     }
 
+
+
+
+
     void test_03()
     {
         std::shared_ptr<ParentNode> parent{ new ParentNode {} };
@@ -151,13 +161,13 @@ namespace WeakPointer {
     }
 }
 
-void main_weak_pointer()
+void main_weak_pointer() 
 {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
     using namespace WeakPointer;
-    test_01();
+   // test_01();
     test_02();
-    test_03();
+   // test_03();
 }
 
 // =====================================================================================

@@ -20,7 +20,7 @@ namespace UniquePointerGeneral {
         std::cout << "*ptr:    " << *ptr << std::endl;
 
         // take ownership right now:
-        // std::unique_ptr<int> ptr2{ std::move(ptr) };
+        std::unique_ptr<int> ptr2{ std::move(ptr) };
     }
 
     void storeUniquePointerSafe(const std::unique_ptr<int>& ptr)
@@ -48,6 +48,7 @@ namespace UniquePointerGeneral {
     {
         // create a unique_ptr to an int with value 123
         std::unique_ptr<int> ptr1{ new int{ 123 } };
+        
         // or
         // std::unique_ptr<int> ptr1{ std::make_unique<int>(123) };
         // or
@@ -88,7 +89,7 @@ namespace UniquePointerGeneral {
         storeUniquePointer(ptr);
 
         // C++ Core Guidelines
-        storeUniquePointerAlternate(ptr.get());
+        // storeUniquePointerAlternate(ptr.get());
 
         // does this work?
         std::cout << "*ptr:   " << *ptr << std::endl;
@@ -128,7 +129,7 @@ namespace UniquePointer_SourceSinkPattern
     }
 }
 
-void main_unique_ptr()
+void main_unique_ptr() 
 {
     using namespace UniquePointerGeneral;
     test_01();

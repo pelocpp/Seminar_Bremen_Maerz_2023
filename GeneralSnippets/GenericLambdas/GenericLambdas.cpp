@@ -9,7 +9,7 @@
 #include <iterator>
 #include <functional>
 
-namespace GenericLambdas {
+namespace GenericLambdas { 
 
     // -------------------------------------------------------------------
 
@@ -73,9 +73,15 @@ namespace GenericLambdas {
     void test_04()
     {
         // define a generic lambda
-        auto isGreaterThanFifty = [](const auto& n) { return n > 50; };
+        auto isGreaterThanFifty = 
+            [] (const auto& n) {
+            return n > 50;
+        };
+
+
 
         std::vector<int> intValues{ 44, 65, 22, 77, 2 };
+
 
         // use generic lambda with a vector of integers
         auto it1 = std::find_if(
