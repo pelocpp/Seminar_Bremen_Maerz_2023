@@ -1,0 +1,25 @@
+// =====================================================================
+// Notizzettel.txt
+// =====================================================================
+
+Modern C++ / Firmenseminar RMB Bremen
+
+peter.loos@gmx.de
+
+Peter Loos // "Du"
+
+C++/C ,  Java, C#, Android, (( Python ))
+
+JavaScript
+
+2 Tools:
+
+a) Visual Studio
+
+b) GitHub
+
+
+
+
+// =====================================================================
+
