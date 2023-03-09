@@ -8,25 +8,97 @@
 #include <vector>
 #include <memory>
 #include <algorithm>
+#include <type_traits>
 
-namespace Auto_Examples {
+namespace Auto_Examples { 
 
-    std::map<int, std::string> getFunction() { return {}; };
+    using ReturnType = std::map<int, std::string>;
+
+    ReturnType getFunction() { return {}; };
 
     void test_01_a() {
 
+        //var x;
+        //let y;
+        
+        auto z = (short) 234 ;  // automatic type deduction  // Typ Abeitung
+
         auto n = 123;    // n is type of int
 
-        auto result = getFunction();
-        std::map<int, std::string> result2 = getFunction();
+        ReturnType result = getFunction();
+
+        std::map<int, std::string> result2
+            = getFunction();
     }
 
     // ---------------------------------------------------------------------
 
+    // float
     auto sum(float f1, float f2)
     {
         return f1 + f2;
     }
+
+    auto tueWas(bool flag, double d, float f) -> double
+    {
+        if (flag) {
+            return d;
+        }
+        else
+        {
+            return f;
+        }
+    }
+
+    template <typename T, typename U>
+    
+    // __var1 + ___var2  // Tree Arith. Ausdruck
+
+    decltype ( std::declval<T>() + std::declval<U>() )
+       tueWas2(bool flag, T d, U f)
+    {
+        // std::string x = std::declval<T>();
+
+        if (flag) {
+            return d;
+        }
+        else
+        {
+            return f;
+        }
+    }
+
+    template <typename T, typename U>
+
+    auto tueWas3(bool flag, T d, U f) -> decltype (f + d)
+    {
+        if (flag) {
+            return d;
+        }
+        else
+        {
+            return f;
+        }
+    }
+
+    void testTueEtwas()
+    {
+        int n = 123;
+
+        decltype (n) m = 456;
+
+
+        auto result = tueWas2(false, std::string("ABC"), std::string("DEF"));
+    }
+
+
+    //void wasAnderes(const auto& para)
+    //{
+    //    std::remove_reference < decltype(para ) >
+
+    //    XXXX variable;
+    //}
+
 
     auto foo(bool flag, char ch, double d) -> double
     {

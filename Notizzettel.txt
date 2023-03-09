@@ -19,7 +19,56 @@ a) Visual Studio
 b) GitHub
 
 
+Inhalt:
 
+Kenntnisse  / Erwartungen
+
+MT (std::async)  // Feature , Promises
+Move-Semantik
+Templates 
+Type Traits
+constexpr
+constexpr if
+
+
+// =====================================================================
+
+Pause 10.30  // 15
+
+Bis 17 Uhr
+
+Mittagspause : Egal
+
+// =====================================================================
+
+
+Move-Semantics:
+
+==>: ... 420   // Ursprungs-Objekt: Wird freigegeben
+==>: ... 110
+
+// =====================================================================
+
+==>: ... 7000  // Ursprungs-Objekt: Wird freigegeben
+
+// =====================================================================
+
+==>: ... B40   // 
+
+
+// =====================================================================
+
+
+C++:
+
+== OO: Objekt-Orientiert
+
+== GP: Generische Programmierung  
+
+
+Zum 3-Ebenenmodell der Template-Instanzierung:
+
+https://github.com/pelocpp/cpp_modern_examples/blob/master/GeneralSnippets/TemplateClassBasics/TemplatesClassBasics.md
 
 // =====================================================================
 

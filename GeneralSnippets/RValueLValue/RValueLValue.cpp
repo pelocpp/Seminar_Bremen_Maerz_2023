@@ -14,9 +14,9 @@ namespace LValueRValue {
     }
 
     // rvalue reference
-    //void sayHello(std::string&& message) {
-    //    std::cout << "sayHello [std::string&&]: " << message << std::endl;
-    //}
+    void sayHello(std::string&& message) {
+        std::cout << "sayHello [std::string&&]: " << message << std::endl;
+    }
 
     void test01() {
 
@@ -24,16 +24,16 @@ namespace LValueRValue {
         std::string b = " World";
 
         sayHello(a);
-        //sayHello("ABC");
-        //sayHello(a + b);
+        sayHello("ABC");
+        sayHello(a + b);
     }
 
     // -------------------------------------------------------------------
 
     void helper(std::string&& message) {
 
-        sayHello(message);
-        // sayHello(std::move(message));    // casting an lvalue to an rvalue
+        sayHello(std::move(message));  // a) derselbe Datentyp: &&
+                            // b) Objekt hat Namen:  &
     }
 
     void test02() {
