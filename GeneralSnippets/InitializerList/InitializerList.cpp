@@ -12,7 +12,7 @@
 namespace InitializerList {
 
     // function using std::initializer_list
-    int myIntAdderFunction(std::initializer_list<int> list)
+    int myIntAdderFunction(std::vector<int> list)
     {
         int result{};
         std::for_each(
@@ -26,15 +26,23 @@ namespace InitializerList {
 
     // delegating std::initializer_list with range based loop
     void printMe(std::initializer_list<int> list) {
+        
+        // for (   typ  element  :   container )
+
         for (const auto& value : list) {
             std::cout << value << " - ";
         }
+        
         std::cout << std::endl;
     }
 
     void test_01() {
         // testing functions expecting lists in function call
-        int sum = myIntAdderFunction({ 1, 3, 5, 7, 9 });
+
+        int sum =
+            
+            myIntAdderFunction({ 1, 2, 3, 5, 7, 9, 10, 11 });
+
         std::cout << sum << std::endl;
         std::cout << myIntAdderFunction({ 2, 4, 6, 8 }) << std::endl;
     }
@@ -73,13 +81,27 @@ namespace InitializerList {
 
     void test_03() {
 
-        Polygon polygon 
-        {
-            { 45.0, 45.0 },
+        Polygon polygon
+        {                          // c'tor Polygon
+            {                      // std::initializer_list<Point>
+                { 45.0, 45.0 },    // c'tor Point - Brace-Initialisierung
+                { 60.0, 60.0 },
+                { 120.0, 120.0 },
+                { 180.0, 180.0 }
+            }
+        };
+
+        // Brace Elision / Auslassen
+
+        Polygon polygon2
+        {                      // c'tor Polygon
+            { 45.0, 45.0 },    // c'tor Point - Brace-Initialisierung
             { 60.0, 60.0 },
             { 120.0, 120.0 },
             { 180.0, 180.0 }
         };
+
+
     }
 
     // =================================================================================

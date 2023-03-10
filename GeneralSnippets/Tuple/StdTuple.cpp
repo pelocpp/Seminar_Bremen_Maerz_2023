@@ -24,10 +24,13 @@ namespace TupleSamples {
         std::tuple <char, int, double> moreValues{ 'Z', 987, 987.654 };
 
         // accessing tuple values using std::get 
+
+        constexpr int n = 1;
+
         std::cout << "The values of tuple are : ";
         std::cout 
             << std::get<0>(values) << " - " 
-            << std::get<1>(values) << " - " 
+            << std::get<n>(values) << " - " 
             << std::get<2>(values)
             << std::endl;
 
@@ -67,6 +70,8 @@ namespace TupleSamples {
         Row row2 = std::make_tuple(11, 'B', 2.22, "Sepp");
         Row row3 = std::make_tuple(12, 'C', 3.33, "Hans");
 
+        // using Row = std::tuple<int, char, double, std::string>;
+
         std::vector<Row> mySheet;
 
         mySheet.push_back(row1);
@@ -93,8 +98,13 @@ namespace TupleSamples {
         mySheet.push_back(row2);
         mySheet.push_back(row3);
 
-        // C++ 17: structured binding
-        const auto& [id, abbr, val, name] = mySheet[0];
+        Row& ersteReihe = mySheet[0];   // Ginge
+        auto&  zweiteReihe = mySheet[1];   // Ginge auch
+
+        // an Stelle von get<0>:  C++ 17: structured binding
+        const auto& [ id, abbr, val, name ] = mySheet[0];
+
+      //  id = 999;
 
         std::cout
             << "Id:    " << id << std::endl
@@ -102,6 +112,10 @@ namespace TupleSamples {
             << "Value: " << val << std::endl
             << "Name:  " << name << std::endl;
 
+        // Range Based For Loop
+        // Structured Binding
+        // std::tuple wird mit sinnvollen Namen versehen
+        // auto -> &
         for (const auto& [id, abbr, val, name] : mySheet) {
 
             std::cout 

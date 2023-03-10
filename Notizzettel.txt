@@ -30,6 +30,33 @@ Type Traits
 constexpr
 constexpr if
 
+// =====================================================================
+
+Freitag:
+
+Literaturverzeichnis
+
+constexpr
+
+std::initializer_list
+
+Range Based for Loop
+
+Variadische Templates
+
+Neue Utility Klassen  
+
+“Type Traits”
+
+Aufgaben zu Utility Klassen / Aufgabe 2
+
+std::string_view
+
+Ab 14 Uhr:
+
+Multithreading
+
+Ausblick
 
 // =====================================================================
 
@@ -157,4 +184,149 @@ iii) Wehrmutstropfen: Der std::shared_ptr
      funktioniert nicht immer :-(((
 
       std::weak_ptr
+
+====================================================
+
+constexpr
+
+== Quasi alles von C  ( ohne CRT )
+== Teile der STL (std::array, std::string, ... )
+
+Zum Beispiel:
+
+Lambdas, die sofort / direkt aufgerufen werden
+
+https://github.com/pelocpp/cpp_modern_examples/blob/master/GeneralSnippets/Lambda/Lambda01.cpp
+
+====================================================
+
+
+float f = 234.3435F;
+
+long abstand = 1000_km;
+
+Color farbe = 0xFF00AA_rgb;
+
+Date d = "10:03:2023"_date;
+
+Literal Operator
+
+UDL:   User Defined Literal
+
+type operator ""  _km (long wert)
+
+// ==========================================
+
+Welchen Typ hat "... TRest "
+
+...  wird auf ein Pack abgebildet.
+
+Pack:  Mehrere Typen
+
+Mehrere Werte (Daten)
+
+Pack: Es geht nur Einpacken und Auspacken
+
+
+printer(1);
+
+==> void printer(T n)
+
+==> void printer(T n, TRest ... m) , bei leerem Pack
+
+
+=============================================
+
+Code Bloat
+
+=============================================
+
+
+emplace
+
+=============================================
+
+Universal Reference
+
+
+=============================================
+
+std::vector             ==> Heap / new 
+
+std::initializer_list   ==> a) Parameter-Übergabe
+
+                            b) Stack / kein new
+
+=============================================
+
+
+Thema: std::initializer_list
+
+std::vector:   Sequenz-Konstruktor
+
+std::vector<int> vec { 1, 2, 3, 4 };
+
+Vektor: 1 Parameter vom Typ int: Interne Länge / Kapazität:
+
+                reserve
+
+std::vector<int> vec { 100 };
+
+std::vector<int> vec ( 100 );
+
+// ============================================
+
+Utility Klassen 
+
+optional
+
+Helfer:
+
+std::string   m_phoneNumber;
+
+     if (m_phoneNumber == "") 
+
+int   m_value;
+
+     if (m_value == -1) 
+
+int   m_value;
+bool  m_flag;    // true , false
+
+std::pair<int, bool>
+
+std::optional<int>
+
+------------------------------------
+
+tuple
+
+DTO:  Data Transfer Object
+
+std::tuple <char, int, double> values;
+
+Ein Tuple ist eine Struktur für Schreibfaule
+
+struct WerBinIch
+{
+    char    wert1;
+    int     wert2;
+    double  wert3;
+}
+
+
+------------------------------------
+
+
+std::variant
+
+Beispiel:  Zelle    von Excel:   Format // Typs 
+
+
+Steht für ein Objekt, das zu unterschiedlichen Zeiten
+
+        Daten unterschiedlichen Typs enthalten kann.
+
+
+
 

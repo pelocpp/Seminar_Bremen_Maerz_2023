@@ -149,7 +149,7 @@ int main()
         //main_metaprogramming_01();
         //main_metaprogramming_02();
         //main_move_semantics();
-        //main_optional();
+       // main_optional();
         //main_perfect_forwarding();
         //main_perfect_forwarding_demo();
         //main_perfect_forwarding_motivation();
@@ -192,10 +192,10 @@ int main()
         //main_variadic_templates_mixins();
         //main_variadic_templates_visitor();
         //main_variadic_templates_folding();
-        //main_variant();
+        main_variant();
         //main_virtual_destructor();
         //main_virtual_override_final();
-        main_weak_pointer();
+        //main_weak_pointer();
     }
     catch (const std::exception& ex) {
         std::cout << "Exception: " << ex.what() << std::endl;

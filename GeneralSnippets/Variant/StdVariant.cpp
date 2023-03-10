@@ -8,6 +8,7 @@
 #include <numeric>
 #include <variant>
 #include <functional>
+#include <type_traits>
 
 namespace VariantDemo {
 
@@ -109,8 +110,40 @@ namespace VariantDemo {
         std::variant<int, float, std::string> var{ 3.5f };
 
         // using a generic visitor (matching all types in the variant)
-        auto visitor = [](auto const& elem) {
-            std::cout << elem << std::endl;
+        //auto visitor = [](auto const& elem) {
+        //    std::cout << elem << std::endl;
+        //};
+
+        auto n = 123;
+
+        auto visitor = []( const auto& elem) {
+
+            using CurrentType = decltype(elem);
+
+            using CurrentTypeWithoutRef =
+                std::remove_reference<CurrentType>::type;
+
+            using CurrentTypeWithoutRefAndConst =
+                std::remove_const<CurrentTypeWithoutRef>::type;
+
+            CurrentType n1{};
+            CurrentTypeWithoutRef n2{};
+            CurrentTypeWithoutRefAndConst n3{};
+
+            if constexpr ( std::is_same<int, CurrentTypeWithoutRefAndConst>::value == true) {
+                std::cout << "Tue was fuer int: " << elem << std::endl;
+            }
+            else if constexpr  (std::is_same<float, CurrentTypeWithoutRefAndConst>::value == true) {
+                std::cout << "Tue was fuer float: " << elem << std::endl;
+            }
+            else if constexpr (std::is_same<std::string, CurrentTypeWithoutRefAndConst>::value == true) {
+                std::cout << "Tue was fuer string: " << elem << std::endl;
+
+                std::cout << "String Länge: " << elem.size() << std::endl;
+            }
+            else  {
+                std::cout << "Unbekannt" << std::endl;
+            }
         };
 
         std::visit(visitor, var);
@@ -263,14 +296,14 @@ namespace VariantDemo {
 void main_variant()
 {
     using namespace VariantDemo;
-    test_01();
-    test_02();
+    //test_01();
+    //test_02();
     test_03();
-    test_04();
-    test_05();
-    test_06();
-    test_07();
-    test_08();
+    //test_04();
+    //test_05();
+    //test_06();
+    //test_07();
+    //test_08();
 }
 
 // =====================================================================================

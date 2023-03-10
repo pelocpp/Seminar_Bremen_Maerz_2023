@@ -76,7 +76,7 @@ namespace OptionalExamples {
         contact.setPhone("123456789");
 
         if (contact.getPhone()) {
-            std::cout << "Number: " << contact.getPhone().value() << std::endl;;
+            std::cout << "Number: " << *contact.getPhone() << std::endl;;
         }
         else {
             std::cout << "No Number found!" << std::endl;
@@ -155,7 +155,7 @@ namespace OptionalExamples {
     }
 }
 
-void main_optional()
+void main_optional() 
 {
     using namespace OptionalExamples;
     test_01_optional();
