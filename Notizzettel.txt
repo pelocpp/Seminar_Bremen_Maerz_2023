@@ -328,5 +328,111 @@ Steht für ein Objekt, das zu unterschiedlichen Zeiten
         Daten unterschiedlichen Typs enthalten kann.
 
 
+// =====================================================================
+
+Multithreading
+
+Ausgabe auf der Konsole:
+
+std::cout << n1 << n2 << n3 ... etc:  So nicht
+
+a) Alles in eine Zeichenkette schreiben
+b) std::cout << zeichenkette;
+
+Das geht.
+
+Problem bei dieser Anweisung:   Mehrere << Aufrufe
+
+----------------------------------------------------------------------
+
+Regel:
+
+Jeder Thread muss via join- oder detach-Aufruf seine Resources freigeben:
+
+Es gibt zwischen den beiden Methoden Unterschiede:
+
+a) join blockiert
+
+b) detach ist non blocking
+
+Weitere Aussage:
+
+Ist der Primäre Thread zu Ende, dann werden auch anderen Sekundär-Threads beendet.
+
+----------------------------------------------------------------------
+
+
+
+ std::thread    Entspricht der Win32 API Funktion CreateThread    ===> Die ist (vergleichsweise) teuer !
+
+
+Problem : Ein derartiger Thread kann NICHT zweimal verwendet werden.
+
+Es gibt auch Thread Pools:
+
+a) Funktionen
+
+b) Threads
+
+c)  Einem inaktiven Thread-Objekt kann jederzeit eine Funktion injiziert werden.
+
+// ===========================================================
+
+std::async:
+
+
+2 Unterschiede:    
+
+a) Die Thread-Funktion kann einen Rückgabewert haben.
+
+b) std::async arbeitet mit der Zukunft zusammen:  std::future
+
+
+// ===========================================================
+
+
+Master - Slave - Prinzip:
+
+Countdown Zähler:
+
+std::latch   Verriegelung:    count_down     // wait ()
+
+future 
+
+NICHT den Rückgabewert verwende.
+
+
+// =====================================================================
+// Ende :)
+// =====================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
